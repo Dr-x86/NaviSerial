@@ -10,10 +10,11 @@ body {
 .top-bar {
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  /*background-color: purple;*/
-  background-image: url('../images/background.gif');
-  margin: 10px 10px 0 10px;
+  justify-content: center;
+  height: 70px;
+
+  background-image: url('../images/LainCityV2.webp');
+  margin: 10px 10px 10px 10px;
   border-style: outset;
   border-width: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -23,34 +24,62 @@ body {
   width: 60px;
   height: auto;
   object-fit: contain;
-  margin-right: 30px;
 }
 
 /* Estilos para el contenido principal */
 
-.title {
-  font-size: 24px;
-  margin-left: 20px;
-}
-
 .main-content {
   display: flex;
+  justify-content: center;
   padding: 20px;
   margin: 10px 10px 10px 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 35px;
   /* Espacio entre ventanas */
+}
+
+/* Estilos para el reproductor de video */
+
+.video-player {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 10px 10px 10px 10px;
+  border-width: 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.controls {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.controls button {
+  background-color: #C0C0C0;
+  border: 2px outset #fff;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 /* Estilos para la ventana al estilo Windows 95 */
 
 .win95-window {
-  width: 300px;
+  width: 260px;
   border: 2px solid #000;
   background-color: #C0C0C0;
   box-shadow: inset -2px -2px #fff, inset 2px 2px #808080;
+}
+
+.title {
+  font-size: 24px;
+  margin-left: 20px;
 }
 
 .title-bar {
@@ -107,7 +136,6 @@ body {
   font-size: larger;
   font-weight: bold;
   text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
-  letter-spacing: 5px;
   animation: glitch 1s infinite;
 }
 
