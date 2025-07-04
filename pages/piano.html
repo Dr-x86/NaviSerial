@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano</title>
+</head>
+<body style="background-color: black;">
+	<nav class="nav">
+		<a href="index.html">
+			<h1> < Regresar </h1>
+		</a>
+	</nav>
+
+	<div class="titulo">
+		<h1>Piano Neocities</h1>
+	</div>
+	
+	<style>
+		.nav {
+			color: aliceblue;
+			font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+			letter-spacing: 2px;
+			cursor: pointer;
+			width: 20%;
+			transform: translate(25%, 85%);
+		}
+		a{
+			color: aliceblue;
+			text-decoration: none;
+		}
+		a:hover{
+			color: goldenrod;
+		}
+		.titulo{
+			color: goldenrod;
+			font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+			text-align: center;
+			padding-top: 20%;
+		}
+
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;			
+		}
+		#piano {
+			width: 100%;
+			height: 200px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, 50%);
+			background: black;
+		}
+		.key{
+			width: 14.2857%;
+			height: 200px;
+			float: left;
+			background: white;
+			border: 1px solid black;
+			text-align: center;
+			line-height: 200px;
+			cursor: pointer;
+		}
+		.key:hover{
+			background-color: black;
+			color: white;
+		}
+		.pressed{
+			background-color: black;
+			color: white;
+		}
+	</style>
+	
+    <div id="piano">
+        <div class="key" data-note="Do">Do</div>
+		<div class="key" data-note="Re">Re</div>
+		<div class="key" data-note="Mi">Mi</div>
+		<div class="key" data-note="Fa">Fa</div>
+		<div class="key" data-note="Sol">Sol</div>
+		<div class="key" data-note="La">La</div>
+		<div class="key" data-note="Si">Si</div>
+    </div>
+	<script>
+		window.onload = () => {
+			var keys = document.querySelectorAll(".key");
+			var notesArray = ['Do','Re','Mi','Fa','Sol','La','Si']
+			
+			document.onkeydown = (key) => {
+				if(key.key <= 7 && key.key >= 1){
+					let pressedKey = notesArray[key.key -1]; /* Almacena la key */
+					playNote(pressedKey);
+					
+					let div = Array.from(keys)[key.key-1];
+					div.classList.add("pressed");
+				}
+			}
+			
+			document.onkeyup = () => {
+				keys.forEach(function(key){
+					key.classList.remove("pressed");
+				});
+			}
+			
+			
+			keys.forEach(function(key) {
+				key.addEventListener("click", function() {
+					var note = this.getAttribute("data-note");
+					playNote(note);
+				});
+			});
+		}
+		
+		dict = { 			//Clave: Nota Valor: Url
+			'Do': "tiyh04",
+			'Re': "wyvlr4",
+			'Mi': "630b7z",
+			'Fa': "7tiux7",
+			'Sol':"rv9mzm",
+			'La': "jpvh3b",
+			'Si': "1rp5oc"
+		}
+		
+		function playNote(note){
+			
+			var audio = new Audio("https://files.catbox.moe/"+dict[note]+".mp3");
+			audio.play();
+		}
+	</script>
+</html>
+</body>

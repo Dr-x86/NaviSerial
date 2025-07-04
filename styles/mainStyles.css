@@ -1,0 +1,223 @@
+body {
+  margin: 0;
+  font-family: 'MS Sans Serif', sans-serif;
+  background-color: #008080;
+  background-attachment: fixed;
+}
+
+/* Estilos para la barra superior */
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  /*background-color: purple;*/
+  background-image: url('../images/background.gif');
+  margin: 10px 10px 0 10px;
+  border-style: outset;
+  border-width: 3px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  width: 60px;
+  height: auto;
+  object-fit: contain;
+  margin-right: 30px;
+}
+
+/* Estilos para el contenido principal */
+
+.title {
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+.main-content {
+  display: flex;
+  padding: 20px;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  /* Espacio entre ventanas */
+}
+
+/* Estilos para la ventana al estilo Windows 95 */
+
+.win95-window {
+  width: 300px;
+  border: 2px solid #000;
+  background-color: #C0C0C0;
+  box-shadow: inset -2px -2px #fff, inset 2px 2px #808080;
+}
+
+.title-bar {
+  background: #000080;
+  color: white;
+  padding: 2px 5px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title-bar .title {
+  font-size: 14px;
+}
+
+.title-bar .close-button {
+  background-color: #C0C0C0;
+  color: black;
+  border: 1px solid #808080;
+  width: 16px;
+  height: 16px;
+  text-align: center;
+  line-height: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.window-body {
+  padding: 10px;
+  font-size: 14px;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    background-color: #000080;
+  }
+
+  50% {
+    background-color: #0000A0;
+  }
+}
+
+.title-bar {
+  animation: blink 1.5s infinite;
+}
+
+/* Estilos para el texto con efecto glitch */
+
+.glitch {
+  color: #C0C0C0;
+  font-size: larger;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+  letter-spacing: 5px;
+  animation: glitch 1s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  color: #0ff;
+  z-index: -1;
+  animation: glitchTop 1s infinite;
+}
+
+.glitch::after {
+  color: #f0f;
+  z-index: -2;
+  animation: glitchBottom 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: none;
+  }
+
+  20% {
+    transform: skew(-2deg, 0deg);
+  }
+
+  40% {
+    transform: skew(2deg, 0deg);
+  }
+
+  60% {
+    transform: skew(-2deg, 0deg);
+  }
+
+  80% {
+    transform: skew(2deg, 0deg);
+  }
+
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes glitchTop {
+  0% {
+    clip-path: inset(0 0 85% 0);
+    transform: translate(-2px, -2px);
+  }
+
+  50% {
+    clip-path: inset(0 0 50% 0);
+    transform: translate(2px, 2px);
+  }
+
+  100% {
+    clip-path: inset(0 0 85% 0);
+    transform: translate(-2px, -2px);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip-path: inset(85% 0 0 0);
+    transform: translate(2px, 2px);
+  }
+
+  50% {
+    clip-path: inset(50% 0 0 0);
+    transform: translate(-2px, -2px);
+  }
+
+  100% {
+    clip-path: inset(85% 0 0 0);
+    transform: translate(2px, 2px);
+  }
+}
+
+/* Responsive styles */
+/* Adjustments for smaller screens */
+/* This will make the layout more mobile-friendly */
+
+@media (max-width: 600px) {
+  .top-bar {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .glitch {
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-left: 0;
+  }
+}

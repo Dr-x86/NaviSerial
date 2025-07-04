@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            background-color: #f0f0f0;
+        }
+        img{
+            margin-top: 50px;
+            width: 30px;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/index.html">
+        <img src="/images/favicon.png" alt="inicio">
+    </a>
+    <h1>Snake</h1>
+    <button id="startButton">Start</button>
+    <canvas id="snakeGame" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('snakeGame');
+        const ctx = canvas.getContext('2d');
+        const box = 20; // tamaño de cada cuadro
+        let snake = [{ x: box * 5, y: box * 5 }]; // posición inicial de la serpiente
+        let direction = 'RIGHT'; // dirección inicial
+        let food = spawnFood(); // genera comida
+        let puntos = 0; // puntaje
+        let game; // variable para el intervalo del juego
+
+        // escucha eventos de teclado
+        document.addEventListener('keydown', changeDirection);
+        document.getElementById('startButton').onclick = startGame;
+
+        function spawnFood() {
+            return {
+                x: Math.floor(Math.random() * (canvas.width / box)) * box,
+                y: Math.floor(Math.random() * (canvas.height / box)) * box
+            };
+        }
+
+        function changeDirection(event) {
+            if (event.key === 'ArrowUp' && direction !== 'DOWN') {
+                direction = 'UP';
+            } else if (event.key === 'ArrowDown' && direction !== 'UP') {
+                direction = 'DOWN';
+            } else if (event.key === 'ArrowLeft' && direction !== 'RIGHT') {
+                direction = 'LEFT';
+            } else if (event.key === 'ArrowRight' && direction !== 'LEFT') {
+                direction = 'RIGHT';
+            }
+        }
+
+        function startGame() {
+            snake = [{ x: box * 5, y: box * 5 }];
+            direction = 'RIGHT';
+            food = spawnFood();
+            puntos = 0;
+
+            if (game) {
+                clearInterval(game);
+            }
+            game = setInterval(draw, 150); // comienza el juego
+        }
+
+        function draw() {
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(food.x, food.y, box, box);
+
+            let snakeX = snake[0].x;
+            let snakeY = snake[0].y;
+
+            if (direction === 'UP') snakeY -= box;
+            if (direction === 'DOWN') snakeY += box;
+            if (direction === 'LEFT') snakeX -= box;
+            if (direction === 'RIGHT') snakeX += box;
+
+            if (snakeX === food.x && snakeY === food.y) {
+                food = spawnFood(); // genera nueva comida
+                puntos++;
+            } else {
+                snake.pop(); // elimina la última parte de la serpiente
+            }
+
+            snake.unshift({ x: snakeX, y: snakeY });
+
+            ctx.fillStyle = 'green';
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+            }
+
+            if (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(snakeX, snakeY)) {
+                clearInterval(game);
+                alert('You died! Your score: ' + puntos);
+            }
+        }
+
+        function collision(headX, headY) {
+            for (let i = 1; i < snake.length; i++) {
+                if (headX === snake[i].x && headY === snake[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function directionButtons(cadena) {
+            if (cadena === 'up' && direction !== "DOWN") {
+                direction = "UP";
+            } else if (cadena === 'down' && direction !== "UP") {
+                direction = "DOWN";
+            } else if (cadena === "right" && direction !== "LEFT") {
+                direction = "RIGHT";
+            } else if (cadena === "left" && direction !== "RIGHT") {
+                direction = "LEFT";
+            }
+        }
+    </script>
+    <div class="arriba">
+        <button onclick="directionButtons('up')"> Up </button>
+    </div>
+    <div class="botones">
+        <button onclick="directionButtons('left')"> Left </button>
+        <button onclick="directionButtons('down')"> Down </button>
+        <button onclick="directionButtons('right')"> Right </button>
+    </div>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* Centra horizontalmente */
+            justify-content: center;
+            /* Centra verticalmente */
+            height: 100vh;
+            /* Ocupa toda la altura de la ventana */
+            margin: 0;
+            /* Elimina el margen por defecto */
+            background-color: #f0f0f0;
+            /* Color de fondo */
+        }
+
+        canvas {
+            border: 1px solid black;
+            background-color: #f0f0f0;
+        }
+
+        #startButton {
+            width: 50px;
+            margin-bottom: 20px;
+            /* Espaciado entre el botón y el canvas */
+        }
+
+        .arriba,
+        .botones {
+            display: flex;
+            justify-content: center;
+            /* Centra los botones */
+            margin-bottom: 10px;
+            /* Espaciado entre las filas de botones */
+        }
+
+        .arriba button,
+        .botones button {
+            width: 40px;
+            height: 40px;
+            margin: 0 5px;
+            /* Espaciado entre los botones */
+        }
+
+        .botones button {
+            width: 85px;
+            /* Ancho para los botones de dirección */
+            height: 40px;
+        }
+
+        button:hover {
+            background-color: azure;
+            cursor: pointer;
+        }
+    </style>
+</body>
+
+</html>
