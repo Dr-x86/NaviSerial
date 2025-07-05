@@ -1,10 +1,12 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const idiomaSelect = document.getElementById("idioma");
   const iframe = document.getElementById("video-frame");
   const btnAnterior = document.getElementById("anterior");
   const btnSiguiente = document.getElementById("siguiente");
+  const infoEpisodio = document.getElementById("info-episodio");
+  const capituloSelect = document.getElementById("capitulo-select");
 
-  // Lista de episodios por idioma
   const episodios = {
     es: [
         "https://mega.nz/embed/JdZBRbIZ#MagCEub6dTptfNHiOn4uE5B_xd7NHevVjkYsqzIYvM0",
@@ -38,11 +40,24 @@ document.addEventListener("DOMContentLoaded", function () {
     ]
   };
 
+  
+  const titulos = ["Weird","Girls","Psyche","Religion","Distortion","Kids","Society","Rumors","Protocol","Love","Infornography","Landscape","Ego"];
+  
   let idiomaActual = idiomaSelect.value;
   let episodioActual = 0;
 
   function actualizarIframe() {
-    iframe.src = episodios[idiomaActual][episodioActual];
+    const listaIdioma = episodios[idiomaActual];
+    
+    const listaCapitulo = capituloSelect.value;
+    if (listaCapitulo !== "none") {
+      episodioActual = parseInt(listaCapitulo) - 1;
+    } else {
+      episodioActual = 0;
+    }
+    
+    iframe.src = listaIdioma[episodioActual];
+    infoEpisodio.textContent = `Episodio ${episodioActual + 1}: ${titulos[episodioActual]}`;
   }
 
   idiomaSelect.addEventListener("change", function () {
@@ -51,9 +66,19 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarIframe();
   });
 
+  capituloSelect.addEventListener("change", function () {
+    const capituloSeleccionado = this.value;
+    if (capituloSeleccionado !== "none") {
+      episodioActual = parseInt(capituloSeleccionado) - 1;
+      actualizarIframe();
+    }
+  });
+
   btnAnterior.addEventListener("click", function () {
     if (episodioActual > 0) {
       episodioActual--;
+      capituloSelect.value = episodioActual + 1; // Actualizar el select
+      infoEpisodio.textContent = `Episodio ${episodioActual + 1}: ${titulos[episodioActual]}`;
       actualizarIframe();
     }
   });
@@ -61,10 +86,12 @@ document.addEventListener("DOMContentLoaded", function () {
   btnSiguiente.addEventListener("click", function () {
     if (episodioActual < episodios[idiomaActual].length - 1) {
       episodioActual++;
+      capituloSelect.value = episodioActual + 1; // Actualizar el select
+      infoEpisodio.textContent = `Episodio ${episodioActual + 1}: ${titulos[episodioActual]}`;
       actualizarIframe();
     }
   });
 
-  // Cargar episodio inicial
+  // Inicializar
   actualizarIframe();
 });

@@ -1,9 +1,35 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'MS Sans Serif', sans-serif;
   background-color: #008080;
   background-attachment: fixed;
+  cursor: url("../images/cursor.cur"), auto;
 }
+
+a {
+  cursor: url("../images/link.cur"), pointer;
+}
+
+option {
+  cursor: url("../images/link.cur"), pointer;
+}
+
+select {
+  background-color: #C0C0C0;
+  border: 2px outset #fff;
+  padding: 2px 4px;
+  font-size: 12px;
+  cursor: url("../images/cursor.cur"), auto;
+}
+
+select:hover {
+  background-color: #A0A0A0;
+}
+
 
 /* Estilos para la barra superior */
 
@@ -33,14 +59,27 @@ body {
   justify-content: center;
   padding: 20px;
   margin: 10px 10px 10px 10px;
+  margin-bottom: 30px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   flex-direction: row;
   flex-wrap: wrap;
   gap: 35px;
-  /* Espacio entre ventanas */
 }
 
 /* Estilos para el reproductor de video */
+#video-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 500px;
+  border: none;
+  background-image: url('../images/background.gif');
+  background-size: auto;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+
+}
 
 .video-player {
   display: flex;
@@ -50,7 +89,6 @@ body {
   margin: 10px 10px 10px 10px;
   border-width: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
 }
 
 .controls {
@@ -64,8 +102,12 @@ body {
   background-color: #C0C0C0;
   border: 2px outset #fff;
   padding: 2px 8px;
-  cursor: pointer;
+  cursor: url("../images/link.cur"), pointer;
   font-size: 12px;
+}
+
+.controls button:hover {
+  background-color: #A0A0A0;
 }
 
 /* Estilos para la ventana al estilo Windows 95 */
@@ -105,7 +147,7 @@ body {
   text-align: center;
   line-height: 14px;
   font-weight: bold;
-  cursor: pointer;
+  cursor: url("../images/link.cur"), pointer;
 }
 
 .window-body {
@@ -247,5 +289,8 @@ body {
   .title {
     font-size: 18px;
     margin-left: 0;
+  }
+  #video-frame {
+    height: 300px;
   }
 }
