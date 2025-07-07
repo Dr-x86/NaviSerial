@@ -14,9 +14,11 @@
     <div class="glitch">
       <p>Children of the city</p>
     </div>
+    <br>
     <a href="index.html">
       <img src="images/logo.gif" alt="Logo" class="logo">
     </a>
+    <br>
     <div class="glitch"> NAVI + Inteligencia colectiva</div>
   </header>
 
@@ -49,7 +51,7 @@
         <div class="close-button">×</div>
       </div>
       <div class="window-body">
-        Salta rapidamente a un capitulo:
+        Salta a un capitulo:
         <br><br><br>
         <select id="capitulo-select">
           <option value="none"> Ninguno </option>
@@ -79,11 +81,11 @@
         <div class="close-button">×</div>
       </div>
       <div class="window-body">
-        <br>
         Conecta con el mundo en los <a href="#comentarios">comentarios</a>
         <br><br>
-        
-        <a href="https://www.facebook.com/lain.iwakura.532731/" target="_blank" style="cursor: url('images/person.cur'), pointer">
+        <br>
+        <a href="https://www.facebook.com/lain.iwakura.532731/" target="_blank"
+          style="cursor: url('images/person.cur'), pointer">
           <img src="https://win98icons.alexmeub.com/icons/png/computer_user_pencil-0.png" alt="mrworldwide"
             style="height: 16px; margin-right: 5px;">
           You
@@ -96,32 +98,95 @@
     <div class="win95-window" style="width: 800px;">
       <div class="title-bar">
         <img src="https://win98icons.alexmeub.com/icons/png/msn3-3.png" alt="reproductor" style="height: 16px;">
-        <span class="title">Windows reproductor</span>
+        <span class="title">Windows media player</span>
         <div class="close-button">×</div>
       </div>
       <div class="window-body">
-        <h3 id="info-episodio">Selecciona un idioma ⬆</h3>
+        <h3 id="info-episodio">Selecciona un idioma ⬆ </h3>
 
-        <iframe id="video-frame" width="560" height="315"
-          src="images/background.gif" allowfullscreen>
+        <iframe id="video-frame" width="560" height="315" frameborder="0" src="images/background.gif" scrolling="no"
+          allowfullscreen>
         </iframe>
 
       </div>
       <div class="controls">
+        <button id="vhs"> VHS </button>
         <button id="anterior">⏮</button>
-        <a href="#idioma"><button >⏏</button></a>
+        <a href="#idioma"><button>⏏</button></a>
         <button id="siguiente">⏭</button>
       </div>
       <br>
     </div>
   </div>
-  <script src="scripts/reproducir.js"></script>
 
-  <section id="comentarios" class="main-content">
-    <h1> AQUI VAN LOS COMENTARIOS </h1>
-    Putos negros, no hay comentarios.
+
+  <section class="top-bar" style="margin-top: 10px;">
+    <div class="glitch">
+      Comentarios
+    </div>
   </section>
 
+
+  <section id="comentarios" class="main-content">
+
+    <div class="win95-window" style="width: 95%; margin: 0 auto;">
+      <div class="title-bar">
+        <img src="https://win98icons.alexmeub.com/icons/png/channels-2.png" alt="wiredAlt.exe"
+          style="height: 16px; margin-right: 3px;">
+        <span class="title">WIRED.exe</span>
+        <div class="close-button">×</div>
+      </div>
+      <div class="window-body">
+        <section id="ladoDerecho">
+
+          <style>
+            /* Estilos para el lado derecho */
+            #ladoDerecho {
+              float: right;
+              width: 50%;
+              padding: 5px;
+              box-sizing: border-box;
+              text-align: right;
+            }
+          </style>
+          <h1 style="text-align: center;">Deja tu comentario</h1>
+          <br><br>
+        </section>
+
+        <section id="ladoIzquierdo">
+          <style>
+            /* Estilos para el lado izquierdo */
+            #ladoIzquierdo {
+              float: left;
+              width: 50%;
+              padding: 10px;
+              box-sizing: border-box;
+              text-align: left;
+            }
+          </style>
+
+          <h1>Comentarios Recientes</h1>
+          <p>AQUI INTEGRACIÓN CON API DE FIREBASE O ALGUNA BASE DE DATOS SERVERLESS</p>
+
+        </section>
+
+        <br><br>
+      </div>
+    </div>
+  </section>
+
+  <div class="main-content">
+    <footer class="top-bar" style="width: 95%;">
+      <img src="images/mobilefriendly.png" alt="postal">
+      <img src="images/mx-spanish-website.gif" alt="postalEspañol">
+      <img src="images/learnhtmlbutton.gif" alt="html">
+      <img src="images/web.gif" alt="www">
+      <br><br>
+    </footer>
+  </div>
+
+  <script src="scripts/reproducir.js"></script>
+  <script src="scripts/vhs.js"></script>
 </body>
 
 </html>

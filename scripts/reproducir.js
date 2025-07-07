@@ -1,4 +1,4 @@
-
+// Script para manejar la reproducción de videos y la selección de episodios
 document.addEventListener("DOMContentLoaded", function () {
   const idiomaSelect = document.getElementById("idioma");
   const iframe = document.getElementById("video-frame");
@@ -49,19 +49,23 @@ document.addEventListener("DOMContentLoaded", function () {
   function actualizarIframe() {
     const listaIdioma = episodios[idiomaActual];
     
-    const listaCapitulo = capituloSelect.value;
-    if (listaCapitulo !== "none") {
-      episodioActual = parseInt(listaCapitulo) - 1;
-    } else {
-      episodioActual = 0;
+    const capitulo = capituloSelect.value;
+    if (capitulo !== "none") {
+      episodioActual = parseInt(capitulo) - 1;
+    }else {
+      episodioActual = 0; // Reiniciar al primer episodio si se selecciona "none"
     }
-    
+
     iframe.src = listaIdioma[episodioActual];
     infoEpisodio.textContent = `Episodio ${episodioActual + 1}: ${titulos[episodioActual]}`;
   }
 
   idiomaSelect.addEventListener("change", function () {
     idiomaActual = this.value;
+    if (idiomaActual === "none") {
+      iframe.src = ""; // Limpiar el iframe si se selecciona "none"
+      infoEpisodio.textContent = "Selecciona un idioma y un episodio";
+    }
     episodioActual = 0;
     actualizarIframe();
   });
@@ -70,6 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const capituloSeleccionado = this.value;
     if (capituloSeleccionado !== "none") {
       episodioActual = parseInt(capituloSeleccionado) - 1;
+      actualizarIframe();
+    }else {
+      episodioActual = 0; // Reiniciar al primer episodio si se selecciona "none"
       actualizarIframe();
     }
   });

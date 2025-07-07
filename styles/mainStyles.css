@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  cursor: url("../images/cursor.cur"), auto;
 }
 
 body {
@@ -24,6 +25,14 @@ select {
   padding: 2px 4px;
   font-size: 12px;
   cursor: url("../images/cursor.cur"), auto;
+}
+
+button {
+  background-color: #C0C0C0;
+  border: 2px outset #fff;
+  padding: 2px 8px;
+  cursor: url("../images/link.cur"), pointer;
+  font-size: 16px;
 }
 
 select:hover {
@@ -67,6 +76,7 @@ select:hover {
 }
 
 /* Estilos para el reproductor de video */
+
 #video-frame {
   display: flex;
   align-items: center;
@@ -85,17 +95,20 @@ select:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   margin: 10px 10px 10px 10px;
+  margin-bottom: 20px;
   border-width: 3px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+
 .controls {
-  margin-top: 8px;
+  margin-top: 10px;
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
 }
 
 .controls button {
@@ -103,7 +116,7 @@ select:hover {
   border: 2px outset #fff;
   padding: 2px 8px;
   cursor: url("../images/link.cur"), pointer;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .controls button:hover {
@@ -117,6 +130,22 @@ select:hover {
   border: 2px solid #000;
   background-color: #C0C0C0;
   box-shadow: inset -2px -2px #fff, inset 2px 2px #808080;
+  position: relative;
+}
+
+.win95-window-active::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  /* ahora es relativo al .video-player */
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgb(0 0 0 / 30%) 50%, rgb(0 0 0 / 0%) 50%);
+  background-size: 100% 2px, 3px 100%;
+  z-index: 999;
 }
 
 .title {
@@ -267,7 +296,7 @@ select:hover {
 /* Adjustments for smaller screens */
 /* This will make the layout more mobile-friendly */
 
-@media (max-width: 600px) {
+@media (max-width: 561px) {
   .top-bar {
     flex-direction: row;
     align-items: center;
@@ -290,7 +319,16 @@ select:hover {
     font-size: 18px;
     margin-left: 0;
   }
+
+  .video-player {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
   #video-frame {
+    width: 100%;
     height: 300px;
   }
 }
