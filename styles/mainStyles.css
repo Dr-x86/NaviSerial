@@ -75,6 +75,14 @@ select:hover {
   gap: 35px;
 }
 
+/* Estilos para el contenedor de imágenes */
+.imagenes-contenedor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
 /* Estilos para el reproductor de video */
 
 #video-frame {
@@ -136,8 +144,8 @@ select:hover {
 .win95-window-active::before {
   content: " ";
   display: block;
-  position: absolute;
-  /* ahora es relativo al .video-player */
+  position: absolute; /* ahora es relativo al .video-player */
+  
   pointer-events: none;
   top: 0;
   left: 0;

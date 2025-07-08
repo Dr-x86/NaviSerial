@@ -13,5 +13,5 @@ btn.addEventListener('click', () => {
       }
     });
 
-    btn.textContent = algunaNoActiva ? 'Desactivar VHS' : 'Activar VHS';
+    btn.textContent = algunaNoActiva ? '🟥' : '🟩';
 });
