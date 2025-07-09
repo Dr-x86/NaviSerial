@@ -35,6 +35,10 @@ button {
   font-size: 16px;
 }
 
+button:hover {
+  background-color: #A0A0A0;
+}
+
 select:hover {
   background-color: #A0A0A0;
 }
@@ -75,7 +79,34 @@ select:hover {
   gap: 35px;
 }
 
+
+/* Estilos para barra de comentarios*/
+
+#comentario-text {
+  width: 99%;
+  height: 300px;
+  border-style: outset;
+}
+
+#comentarios-section {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.contenedor-comments {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+  gap: 20px;
+  margin: 10px 10px 10px 10px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
 /* Estilos para el contenedor de imágenes */
+
 .imagenes-contenedor {
   display: flex;
   flex-direction: row;
@@ -144,8 +175,9 @@ select:hover {
 .win95-window-active::before {
   content: " ";
   display: block;
-  position: absolute; /* ahora es relativo al .video-player */
-  
+  position: absolute;
+  /* ahora es relativo al .video-player */
+
   pointer-events: none;
   top: 0;
   left: 0;
@@ -300,11 +332,60 @@ select:hover {
   }
 }
 
+/* AQUI VAN LOS ESTILOS PARA LA PLANTILLA DE COMENTARIOS */
+#template-com img {
+  width: 6%;
+  border-radius: 50%;
+  /* Hace que la imagen sea circular */
+  margin-right: 10px;
+  /* Espacio entre la imagen y el texto */
+}
+
+#template-com {
+  display: none;
+  /* Usar flexbox para alinear la imagen y el texto */
+  align-items: flex-start;
+  /* Alinear la imagen y el texto al inicio */
+  margin-bottom: 10px;
+  /* Espacio entre comentarios */
+}
+
+.comment-text {
+  flex-grow: 1;
+  /* Permite que el texto ocupe el espacio restante */
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-style: outset;
+}
+
+
 /* Responsive styles */
 /* Adjustments for smaller screens */
 /* This will make the layout more mobile-friendly */
 
 @media (max-width: 561px) {
+
+  #comentarios-section {
+    width: 100%;
+  }
+
+  #comentario-text {
+    height: 200px;
+  }
+
+  .contenedor-comments {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    margin: 10px 10px 10px 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
   .top-bar {
     flex-direction: row;
     align-items: center;
@@ -338,5 +419,10 @@ select:hover {
   #video-frame {
     width: 100%;
     height: 300px;
+  }
+
+  .imagenes-contenedor {
+    width: 50%;
+    gap: 0;
   }
 }

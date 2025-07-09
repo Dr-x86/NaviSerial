@@ -13,5 +13,5 @@ btn.addEventListener('click', () => {
       }
     });
 
-    btn.textContent = algunaNoActiva ? '🟥' : '🟩';
+    btn.textContent = algunaNoActiva ? '🟥' : 'CRT';
 });
